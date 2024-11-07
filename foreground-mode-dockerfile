@@ -1,0 +1,16 @@
+FROM ubuntu
+RUN apt-get update -y && apt-get install -y nginx
+CMD ["nginx","-g","daemon off;"]
+
+# here CMD command run nginx as foreground because of daemon off
+# documentation
+# here we need to understand couple of things
+#step1: whatever we run in cmd it has to run as pid1 here why we are mentioning daemonoff to run it in the pid1 ?
+#solution: in nginx it follows the below procedure 
+#          1. starts and reads the configuration
+#	  2. it initiate listening sockets
+#	  3. it spawns worker process to handle requests
+#	  4. after setting up the worker process the main process exits
+#this behaviour is designed for traditional server environments where service run in the background, however it causes issues in containerised environments like docker so we are running the nginx in foreground by daemon off.
+
+
