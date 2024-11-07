@@ -1,0 +1,3 @@
+FROM layer-reusing-image-1
+RUN echo 'console.log("welcome to layer reusing")' > jaya-app.js
+CMD node jaya-app.js

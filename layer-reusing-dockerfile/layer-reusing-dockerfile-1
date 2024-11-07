@@ -1,0 +1,8 @@
+FROM ubuntu AS node-js-base
+RUN apt update && apt install -y nodejs
+
+FROM node-js-base
+RUN echo 'console.log("Hello from an app")' >> app.js
+CMD node app.js
+
+/* docker build -t layer-image-1 . */
